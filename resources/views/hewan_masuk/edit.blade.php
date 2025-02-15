@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Satwa</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{{asset('assets/img/favicon.png ')}}" rel="icon">
+  <link href="{{asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css' ) }}" rel="stylesheet">
+  <link href="{{asset('assets/vendor/bootstrap-icons/bootstrap-icons.css' ) }}" rel="stylesheet">
+  <link href="{{asset('assets/vendor/boxicons/css/boxicons.min.css' ) }}" rel="stylesheet">
+  <link href="{{asset('assets/vendor/quill/quill.snow.css' ) }}" rel="stylesheet">
+  <link href="{{asset('assets/vendor/quill/quill.bubble.css' ) }}" rel="stylesheet">
+  <link href="{{asset('assets/vendor/remixicon/remixicon.css' ) }}" rel="stylesheet">
+  <link href="{{asset('assets/vendor/simple-datatables/style.css' ) }}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{{asset('assets/css/style.css' )}}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Updated: Apr 20 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+@include('includes.topbar')
+
+  @include('includes.sidebar')
+  <main id="main" class="main">
+
+<div class="pagetitle">
+  <h1>Data Tables</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+      <li class="breadcrumb-item">Tables</li>
+      <li class="breadcrumb-item active">Data</li>
+    </ol>
+  </nav>
+</div><!-- End Page Title -->
+
+<section class="section">
+  <div class="row">
+    <div class="col-lg-12">
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Hewan Masuk</h5>
+          <div class="col-md-6">
+        </div>
+             <!-- Vertical Form -->
+             <form action="{{ route('hewan_masuk.update', $data->id) }}" method="POST" enctype="multipart/form-data" class="row g-3">
+             @csrf
+             @method('PUT')
+
+    <div class="col-12">
+        <label for="jenisHewan" class="form-label">Jenis Hewan</label>
+        <input type="text" class="form-control" id="jenisHewan" name="jenis_hewan" 
+               value="{{ old('jenis_hewan', $data->jenis_hewan) }}" required>
+    </div>
+    <div class="col-12">
+        <label for="asalHewan" class="form-label">Asal Hewan</label>
+        <input type="text" class="form-control" id="asalHewan" name="asal_hewan" 
+               value="{{ old('asal_hewan', $data->asal_hewan) }}" required>
+    </div>
+    <div class="col-12">
+        <label for="kondisiKesehatan" class="form-label">Kondisi Kesehatan</label>
+        <input type="text" class="form-control" id="kondisiKesehatan" name="kondisi_kesehatan" 
+               value="{{ old('kondisi_kesehatan', $data->kondisi_kesehatan) }}" required>
+    </div>
+    <div class="col-12">
+        <label for="tanggalMasuk" class="form-label">Tanggal</label>
+        <input type="date" class="form-control" id="tanggalMasuk" name="tanggal_masuk" 
+               value="{{ old('tanggal_masuk', $data->tanggal_masuk->format('Y-m-d')) }}" required>
+    </div>
+    <div class="col-12">
+        <label for="pemilikPengantar" class="form-label">Pemilik Hewan</label>
+        <input type="text" class="form-control" id="pemilikPengantar" name="pemilik_pengantar" 
+               value="{{ old('pemilik_pengantar', $data->pemilik_pengantar) }}" required>
+    </div>
+    <div class="col-12">
+        <label for="keterangan" class="form-label">Keterangan</label>
+        <textarea class="form-control" id="keterangan" name="keterangan" rows="3">{{ old('keterangan', $data->keterangan) }}</textarea>
+    </div>
+    <div class="col-12">
+        <label for="dokumen" class="form-label">Dokumen</label>
+        <input type="file" class="form-control" id="dokumen" name="dokumen">
+        @if($data->dokumen)
+            <small class="text-muted">Dokumen saat ini: <a href="{{ asset('storage/' . $data->dokumen) }}" target="_blank">Lihat</a></small>
+        @endif
+    </div>
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="{{ route('hewan_masuk.index') }}" class="btn btn-secondary">Batal</a>
+    </div>
+</form>
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{{asset('assets/vendor/apexcharts/apexcharts.min.js')}}"></script>
+  <script src="{{asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{asset('assets/vendor/chart.js/chart.umd.js')}}"></script>
+  <script src="{{asset('assets/vendor/echarts/echarts.min.js')}}"></script>
+  <script src="{{asset('assets/vendor/quill/quill.js')}}"></script>
+  <script src="{{asset('assets/vendor/simple-datatables/simple-datatables.js')}}"></script>
+  <script src="{{asset('assets/vendor/tinymce/tinymce.min.js')}}"></script>
+  <script src="{{asset('assets/vendor/php-email-form/validate.js')}}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{{asset('assets/js/main.js')}}"></script>
+
+</body>
+
+</html>
